@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask,render_template
 from flask import request
 from flask import current_app
 from flask import make_response
@@ -19,6 +19,10 @@ def index():
     response = make_response(html)
     response.set_cookie("answer","42")
     return response
+
+@app.route("/user/<name>")
+def user(name):
+    return render_template("./index.html",name=name)
 
 if __name__=="__main__":
     manager.run()
